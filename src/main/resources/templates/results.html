@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" >
+    <title>Результаты расчетов</title>
+    <link rel="stylesheet" th:href="@{/create.css}">
+    <script type="text/JavaScript"
+            th:src="@{/js/jquery-1.9.1.min.js}">
+    </script>
+</head>
+<body>
+<div th:switch="${calc}">
+    <div th:case="*">
+        <form action="#" th:action="@{/as}" th:object="${calc}"  method="get" if="form">
+            <table border="1" bordercolor="black">
+                <thead>
+                 <tr>
+                     <th>Номер итерации</th>
+                     <th>Номер функции</th>
+                     <th>Результат</th>
+                     <th>Время выполнения (мс)</th>
+                     <th>Доступно результатов</th>
+                 </tr>
+                </thead>
+                <tbody>
+                     <tr th:each="list : *{list}">
+                         <td><span th:text="${list.get(0)}">  </span></td>
+                         <td><span th:text="${list.get(1)}">  </span></td>
+                         <td><span th:text="${list.get(3)}">  </span></td>
+                         <td><span th:text="${list.get(3)}">  </span></td>
+                         <td><span th:text="${list.get(4)}">  </span></td>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>
+
+<form action="#" th:action="@{/close}" th:object="${calcDesk}"  method="post" >
+    <input type="submit" value="Закрыть программу">
+</form>
+<!--Автообновление-->
+<script type="text/JavaScript">
+    function startRefresh() {
+        $.get('', function(data) {
+            $(document.body).html(data);
+        });
+    }
+    $(function() {
+        setTimeout(startRefresh,1000);
+    });
+</script>
+</body>
+</html>

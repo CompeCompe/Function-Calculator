@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Калькулятор функций</title>
+    <link rel="stylesheet" th:href="@{/create.css}">
+</head>
+<body>
+<form action="#" th:action="@{/calc}" th:object="${calcDesk}"  method="post" id="form">
+    <table>
+        <tr>
+            <td>
+                <label for="func1">Первая функция JS</label>
+            </td>
+            <td>
+                <textarea id="func1" th:field="*{func1}" placeholder="function funcFirst(1){return 3;}"></textarea>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <label for="func2">Вторая функция JS</label>
+            </td>
+            <td>
+                <textarea id="func2" th:field="*{func2}" placeholder="function funcSecond(2){ var a = 0; for(var i = 0;i < 10; i++){ a++;} return a;}"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="count">Количество расчетов</label>
+            </td>
+            <td>
+                <input type="number" id="count" th:field="*{count}" min="1" required >
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="delay">Задержка перед началом итерации</label>
+            </td>
+            <td>
+                <input type="number" id="delay" th:field="*{delay}" >
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <input type="radio" name="order" value="sorted" th:field="*{order}" required>Упорядоченный </br> формат вывода</input>
+
+            </td>
+            <td>
+                <input type="radio" name="order" value="random" th:field="*{order}" required>Вывод </br> в порядке завершения </input>
+            </td>
+        </tr>
+    </table>
+    <input type="submit" value="Посчитать">
+</form>
+
+<form action="#" th:action="@{/close}" th:object="${calcDesk}"  method="post" >
+    <input type="submit" value="Закрыть программу">
+</form>
+
+
+</body>
+</html>
